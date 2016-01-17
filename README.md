@@ -4,12 +4,12 @@ _Desktop-like functionalities for the OpenLayers 3 web mapping library._
 Try the [online demo](http://programmerg.github.io/ol3ditor)!
 
 ## License
-This project is licensed under the 2-Clause BSD. This means you can use and modify it for free in private or commercial projects so long as you include the BSD [copyright notice](LICENSE.md) in it.
+This project is licensed under the 2-Clause BSD. This means you can use and modify it for free in private or commercial projects so long as you include the BSD [copyright notice](LICENSE) in it.
 
 ## Getting Started
 - Download the [latest stable release](http://github.com/programmerg/ol3ditor/archive/master.zip)
 - Unpack the `dist` folder to your project directory
-- Create a new `index.html` file, and copy in the contents below:
+- Create a new `index.html` file, and copy in the contents below
 - Finally, open it in your favorite browser!
 
 ```html
