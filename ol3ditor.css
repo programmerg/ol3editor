@@ -1,0 +1,560 @@
+
+html, body {
+    margin: 0;
+	padding: 0;
+    color: #585858;
+	background: #f1f1f1;
+}
+
+.application {
+    width: 100%;
+    height: 100%; /*Fallback*/
+    height: 100vh;
+	color: #333;
+	overflow: hidden;
+}
+
+.startscreen {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(241,241,241,0.9);
+}
+.startscreen.active {
+    display: block;
+}
+.startscreen .container {
+    margin-top: 15%; /*Fallback*/
+    margin-top: 15vh;
+}
+
+.menubar {
+	width: 100%;
+	background: #585858;/*#2a579a;*/
+    position: relative;
+}
+.menubar ul {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    overflow: hidden;
+}
+.menubar ul li {
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: left;
+    list-style-type: none;
+    cursor: pointer;
+}
+.menubar ul li > a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 8px 30px;
+	line-height: 14px;
+	font-size: 14px;
+    text-decoration: none;
+	color: #f1f1f1;
+}
+.menubar ul li:hover > a,
+.menubar ul li:focus > a {
+	background-color: #454545;/*#3e6db6;*/
+    text-decoration: none;
+}
+.menubar ul li.active > a {
+    background-color: #f1f1f1;
+	color: #585858;/*#2a579a;*/
+	cursor: default;
+}
+.menubar .pin {
+    display:block;
+    float:right;
+    padding:4px;
+}
+a.pin {
+    color: #c2c2c2;
+}
+a.pin:hover {
+    color: #337ab7;
+}
+a.pin.active i {
+    transform: rotate(-45deg);
+}
+
+
+.toolbar {
+    position: fixed;
+	top: 30px;
+	left: 0;
+	width: 100%;
+	background: #f1f1f1;
+	z-index: 999;
+}
+.toolbar.pinned {
+    position: static;
+}
+.toolbar .tab-pane {
+    height: 0;
+    opacity: 0;
+    padding: 5px;
+    overflow: hidden;
+	border-bottom: 1px solid #bfbfbf;
+}
+.toolbar .tab-pane.slide-out {
+    height: 50px;
+    opacity: 1;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.toolbar .tab-pane.showing,
+.toolbar.pinned .tab-pane {
+    height: 50px;
+    opacity: 1;
+}
+.toolbar .ol-control {
+    position: static;
+    display: inline-block;
+	margin: 0;
+    padding: 0;
+    vertical-align: middle;
+	background: none transparent;
+	border-radius: 0;
+	border-right: 1px solid #d2d2d2;
+	box-shadow: 0;
+}
+.toolbar .ol-control:last-child {
+	border-right: 0;
+}
+.toolbar .ol-control button {
+    border-radius: 0px;
+    width: 32px;
+    height: 32px;
+    padding: 4px 4px;
+	margin: 4px 4px;
+    display: inline-block;
+    vertical-align: middle;
+	background-color: transparent;
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    opacity: 0.9;
+    border: 1px solid transparent;
+}
+.toolbar .ol-control button:hover {
+    background-color: #c2c2c2;
+    opacity: 1;
+	border: 1px solid #959595;
+}
+.toolbar .ol-control button.active,
+.toolbar .ol-control button.active:hover {
+    background-color: #c2c2c2;
+    opacity: 1;
+}
+.toolbar .ol-control button[disabled],
+.toolbar .ol-control button[disabled]:hover {
+   border: 1px solid transparent;
+   background-color: transparent;
+   opacity: 0.5;
+   /*grayscale for background image*/
+  -webkit-filter: grayscale(1); 
+  -webkit-filter: grayscale(100%); 
+  -moz-filter: grayscale(100%);
+  filter: gray; 
+  filter: grayscale(100%);
+  filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+}
+.toolbar .ol-control .ol-separator {
+    width: 0;
+    height: 40px;
+    display: inline-block;
+    vertical-align: bottom;
+	border-right: 1px solid #d2d2d2;
+}
+
+.map-container {
+	position: relative;
+	width: 100%;
+    height: calc(100% - 55px); /* 30px, 25px */
+	background: #e6e6e6;
+	overflow: hidden;
+}
+.pinned-toolbar .map-container {
+    height: calc(100% - 105px) !important; /* 30px+50px, 25px */
+}
+
+
+.map {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    outline: 0;
+}
+.pinned-layermanager .map,
+.pinned-attributemanager .map {
+    width: 80%;
+}
+.pinned-layermanager.pinned-attributemanager .map {
+    width: 60%;
+}
+.map .ol-control,
+.map .ol-scale-line {
+	background: rgba(241,241,241,0.7);
+	border-radius: 0px;
+	box-shadow: 0;
+    color: #959595;
+}
+.map .ol-control button {
+    border-radius: 0px;
+	background: transparent;
+    opacity: 0.9;
+    border: 1px solid transparent;
+    color: #333;
+}
+.map .ol-control button:hover {
+    background: #c2c2c2;
+    opacity: 1;
+	border: 1px solid #959595;
+}
+.map .ol-attribution.ol-uncollapsible {
+    bottom: 0.5em !important;
+    right: 0.5em !important;
+    height: 21px;
+    color: #959595;
+}
+.map .ol-attribution.ol-uncollapsible ul {
+    font-size: 10px;
+    line-height: 17px;
+}
+.map .ol-scale-line {}
+.map .ol-scale-line-inner {
+	border: 1px solid #959595;
+    border-top: 0;
+    color: #959595;
+}
+.map .ol-zoomslider {
+	right: .5em;
+	left: auto;
+	top: 50%;
+	margin-top: -100px;
+}
+.map .ol-zoomslider-thumb {
+    background: #959595 !important;
+}
+
+.bar-title {
+    font-weight: bold;
+    padding: 5px;
+    font-weight: 600;
+}
+.bar-title a.pin {
+    display: inline-block;
+    float: right;
+}
+
+.layermanager {
+	margin-left: calc(-20% + 1px);
+    width: 20%;
+    height: 100%;
+    position: absolute;
+	top: 0;
+	left:0;
+    box-sizing: border-box;
+	border-right: 1px solid #bfbfbf;
+	background: rgba(230,230,230,0.8) url(res/logo.png) no-repeat left bottom;
+	z-index: 998;
+    color: #585858;
+}
+.layermanager:hover {
+	margin-left: 0;
+}
+.layermanager.pinned {
+	background: #e6e6e6 url(res/logo.png) no-repeat left bottom;
+    margin-left: 0;
+    position: static;
+    float: left;
+}
+.layermanager .layercontainer {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+	padding:0.2em;
+}
+.layercontainer .layer {
+    background-color: transparent;
+    border-radius: 0;
+	border: 1px solid transparent;
+    height: 2em;
+    margin: 2px 0 2px 0;
+    line-height: 2em;
+    overflow: hidden;
+}
+.layer span:first-of-type {
+    position: absolute;
+    left: 1.5em;
+    max-width: calc(100% - 1.5em);
+    white-space: pre;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+.layer:hover {
+    background-color: #c2c2c2;
+}
+.layer.active {
+    background-color: #c2c2c2;
+	border: 1px solid #959595;
+    min-height: 2em;
+    height: auto;
+}
+.layer div {
+    display: none;
+}
+.layer.active div {
+    display: block;
+}
+.layer .visible {
+    top: .5em;
+}
+.layer.over {
+    border-top: 3px solid black;
+}
+
+
+.attributemanager {
+	margin-right: calc(-20% + 1px);
+    width: 20%;
+    height: 100%;
+    position: absolute;
+	top: 0;
+	right:0;
+    box-sizing: border-box;
+	border-left: 1px solid #bfbfbf;
+	background: rgba(230,230,230,0.8);
+	z-index: 998;
+    color: #585858;
+}
+.attributemanager:hover {
+	margin-right: 0;
+}
+.attributemanager.pinned {
+	background: #e6e6e6;
+    margin-right: 0;
+    position: static;
+    float: right;
+}
+
+
+.statusbar {
+    display: table;
+    width: 100%;
+    height: 24px;
+	background: #f1f1f1;
+	border-top: 1px solid #bfbfbf;
+}
+.statusbar > div {
+    position: static;
+    display: table-cell;
+    height: 24px;
+	padding: 5px 5px;
+    box-sizing: border-box;
+    border: 0;
+    vertical-align: middle;
+	line-height: 14px;
+	font-size: 14px;
+	color: #333;
+    color: #585858;
+}
+.statusbar .ol-control {
+    position: static;
+    display: table-cell;
+	margin: 0;
+    padding: 5px;
+    vertical-align: middle;
+	background: none transparent;
+	border-radius: 0;
+	border-right: 1px solid #d2d2d2;
+	box-shadow: 0;
+}
+.statusbar .ol-control:last-child {
+	border-right: 0;
+}
+.statusbar .ol-message {
+}
+.statusbar .ol-mouse-position {
+	width: 210px;
+    text-align: right;
+}
+.statusbar .ol-rotation {
+    width: 50px;
+}
+.statusbar .ol-rotation input {
+	width: 100%;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+    background: none;
+    border: 0;
+    outline: 0;
+	text-align: right;
+}
+.statusbar .ol-projection {
+    width: 150px;
+}
+.statusbar .ol-projection select {
+	width: 100%;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	line-height: 14px;
+    background: none;
+    border: 0;
+    outline: 0;
+}
+.statusbar .ol-projection option {
+	padding: 0;
+	background: #f1f1f1;
+	color: #333;
+}
+
+.buffering span::after {
+	content: '*';
+}
+.error {
+	color: red;
+}
+.tooltip-inner {
+    background: rgba(0,0,0,0.7) !important;
+}
+.tooltip-arrow {
+    border-top-color: rgba(0,0,0,0.7) !important;
+    border-bottom-color: rgba(0,0,0,0.7) !important;
+}
+
+
+.modal-content {
+	border: 0;
+}
+.modal-header {
+	background: #ffffff;
+	border-bottom: 0;
+}
+.modal-footer {
+	background: #f0f0f0;
+	border-top: 0;
+}
+.form-control, .btn {
+	box-shadow: none;
+	border-radius: 0;
+}
+
+
+
+.ol-unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.ol-dragbox {
+    border: 2px solid #3399ff;
+    background: rgba(51,153,255,0.2);
+}
+.ol-dragbox-inverse {
+    border: 2px dashed #3399ff;
+    background: rgba(51,153,255,0.2);
+}
+
+/**
+ * THE FOLLOWING ICON RESOURCES ARE DOWNLOADED FROM:
+ * https://trac.osgeo.org/osgeo/browser/graphics/trunk/toolbar-icons/
+ */
+
+.toolbar button.ol-zoom-in  {
+    background-image: url(res/zoom-in.png);
+}
+.toolbar button.ol-zoom-out {
+    background-image: url(res/zoom-out.png);
+}
+.toolbar button.ol-navhist-back  {
+    background-image: url(res/zoom-last.png);
+}
+.toolbar button.ol-navhist-next  {
+    background-image: url(res/zoom-next.png);
+}
+.toolbar .ol-zoom-extent button {
+    background-image: url(res/zoom-extent.png);
+}
+.toolbar .ol-print button {
+    background-image: url(res/print.png);
+}
+.toolbar .ol-share button {
+    background-image: url(res/share.png);
+}
+.toolbar .ol-geolocate button {
+    background-image: url(res/geolocate.png);
+}
+
+.toolbar .ol-zoom-layer button {
+    background-image: url(res/zoom-layer.png);
+}
+.toolbar .ol-layercontrols button.ol-addraster {
+    background-image: url(res/layer-raster-add.png);
+}
+.toolbar .ol-layercontrols button.ol-addvector {
+    background-image: url(res/layer-vector-add.png);
+}
+.toolbar .ol-layercontrols button.ol-newvector {
+    background-image: url(res/layer-vector-create.png);
+}
+.toolbar .ol-layercontrols button.ol-deletelayer {
+    background-image: url(res/layer-delete.png);
+}
+
+.toolbar .ol-zoom-selected button {
+    background-image: url(res/zoom-selection.png);
+}
+.toolbar .ol-selectcontrols button.ol-singleselect {
+    background-image: url(res/select-one.png);
+}
+.toolbar .ol-selectcontrols button.ol-multiselect {
+    background-image: url(res/select-rectangle.png);
+}
+.toolbar .ol-selectcontrols button.ol-deselect {
+    background-image: url(res/select-remove.png);
+}
+
+.toolbar .ol-editingcontrols button.ol-addpoint {
+    background-image: url(res/point-create.png);
+}
+.toolbar .ol-editingcontrols button.ol-addline {
+    background-image: url(res/line-create.png);
+}
+.toolbar .ol-editingcontrols button.ol-addpolygon {
+    background-image: url(res/polygon-create.png);
+}
+
+.toolbar .ol-editingcontrols button.ol-dragfeature {
+    background-image: url(res/polygon-move.png);
+}
+.toolbar .ol-editingcontrols button.ol-modifyfeature {
+    background-image: url(res/vertex-tools.png);
+}
+.toolbar .ol-editingcontrols button.ol-removefeature {
+    background-image: url(res/selected-delete.png);
+}
+
+.toolbar .ol-measure button {
+    background-image: url(res/measure.png);
+}
