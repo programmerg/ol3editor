@@ -1,0 +1,5 @@
+*.psd
+_/
+src/_/
+_*
+TODO.txt

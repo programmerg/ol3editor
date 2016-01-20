@@ -1,0 +1,31 @@
+
+Map
+-projekt fájl
+
+Layer
+-add (wms,wfs,wmts,tms, file(kml,geojson,image,csv), database table, empty vector)
+-edit
+-save/export
+-duplicate
+-styles
+-group layers + new layer group btn
+
+Feature
+-info
+-rotate
+-attrib szerk
+-add (point, line, poly) + attrib felugrik
+-cadstyle complex draw/modify + coord helper, parallel, ortho, derékszög, szög
+-selection (add, clear, invert, byattrib, to new layer)
+
+Attrib. tabla
+
+Analysis
+-coord
+-distance
+-area
+-heatmap
+-buffer
+-near
+-convolution or raster
+-routing/topology
