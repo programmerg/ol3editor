@@ -67,10 +67,10 @@ ol.control.Geolocate = function (opt_options) {
     this.on('change:active', function () {
         if (this.get('active') === true) {
             geolocateButton.classList.add('active');
-			this.getMap().addLayer( this.get('featuresOverlay') );
 			geolocation.setProjection( this.getMap().getView().getProjection() );
 			geolocation.setTracking(true);
 			geolocation.once('change', function () {
+                this.getMap().addLayer( this.get('featuresOverlay') );
 				if (typeof this.get('accuracyFeature').getGeometry() !== 'undefined') {
 					this.getMap().getView().fit(this.get('accuracyFeature').getGeometry(), this.getMap().getSize(), {padding: [100, 100, 100, 100]});
 				} else if (typeof this.get('positionFeature').getGeometry() !== 'undefined') {

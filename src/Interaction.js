@@ -1,6 +1,9 @@
 /**
  * @classdesc
- * ...
+ * A button control wich, when pressed, sets the state of
+ * interaction to active or inactive.
+ * When the type of control is 'toggle', on state change,
+ * all the same type control will be switched off.
  *
  * @constructor
  * @extends {ol.control.Control}

@@ -18,7 +18,7 @@
             <div class="container">
                 <h1><img src="res/logo.png" alt="OL3ditor" title="OL3ditor" style="margin-left:-10px"> <small>v0.11</small></h1>
                 <p><em>Desktop-like functionalities for the OpenLayers 3 web mapping library.</em></p>
-                <p>Author: Gergő Gelencsér <small>(<a href="http://github.com/programmerg/" target="_blank">github.com/programmerg</a>)</small><br>
+                <p>Author: Gelencsér Gergő <small>(<a href="http://github.com/programmerg/" target="_blank">github.com/programmerg</a>)</small><br>
                 Code licensed under the 2-Clause BSD.<br>
                 Follow the project at: <a href="http://github.com/programmerg/ol3ditor/" target="_blank">github.com/programmerg/ol3ditor</a></p>
                 <p style="color:#c2c2c2">— or —</p>
@@ -56,61 +56,37 @@
             <div id="statusbar" class="statusbar"></div>
         </div>
     
-		<div id="addraster" class="modal fade" role="dialog" tabindex="-1">
+		<div id="newvector" class="modal fade" role="dialog" tabindex="-1">
 		  <div class="modal-dialog">
 			<div class="modal-content">
-			<form id="addraster_form">
+			<form id="newvector_form">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Add Raster layer</h4>
+				<h4 class="modal-title">New Vector layer</h4>
 			  </div>
 			  <div class="modal-body">
 				<div class="form-horizontal">
 					<div class="form-group">
 						<label class="control-label input-sm col-sm-3">Display name:</label>
 						<div class="col-sm-9">
-							<input type="text" name="displayname" class="form-control input-sm">
+							<input type="text" name="displayname" class="form-control input-sm" placeholder="Unnamed layer">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label input-sm col-sm-3">Format:</label>
+						<label class="control-label input-sm col-sm-3">Type:</label>
 						<div class="col-sm-9">
-							<select name="format" class="form-control input-sm" required="required">
-								<option value="wms">WMS - Web Map Service</option>
-								<option value="bing">BingMaps</option>
-								<option value="mapquest">MapQuest</option>
-								<option value="osm">OpenStreetMap</option>
-								<option value="tifw">TIFW - Georeferenced TIF</option>
-								<option value="jpw">JPW - Georeferenced JPG</option>
+							<select name="type" class="form-control input-sm" required>
+								<option value="point">Point</option>
+								<option value="line">Line</option>
+								<option value="polygon">Polygon</option>
+								<option value="geomcollection">Geometry Collection</option>
 							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label input-sm col-sm-3">Server URL:</label>
-						<div class="col-sm-9">
-							<div class="input-group">
-								<input type="text" id="wmsurl" name="server" class="form-control input-sm" required="required" value="http://demo.opengeo.org/geoserver/wms">
-								<span class="input-group-btn">
-									<button type="button" id="checkwmslayer" class="btn btn-sm btn-default">Check for layers</button>
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label input-sm col-sm-3">Layer name:</label>
-						<div class="col-sm-9">
-							<select name="layer" class="form-control input-sm" required="required"></select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label input-sm col-sm-3">Projection:</label>
 						<div class="col-sm-9">
-							<input type="text" name="projection" class="form-control input-sm" value="EPSG:4326">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-9 col-sm-offset-3">
-							<div class="checkbox"><label><input type="checkbox" name="tiled"> Tiled</label></div>
+							<select name="projection" class="form-control input-sm"></select>
 						</div>
 					</div>
 				</div>
@@ -137,46 +113,71 @@
 					<div class="form-group">
 						<label class="control-label input-sm col-sm-3">Display name:</label>
 						<div class="col-sm-9">
-							<input type="text" name="displayname" class="form-control input-sm">
+							<input type="text" name="displayname" class="form-control input-sm" placeholder="Unnamed layer">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label input-sm col-sm-3">Source:</label>
+						<div class="col-sm-9">
+							<select name="type" class="form-control input-sm" required>
+                                <option value="file">Local file</option>
+                                <option value="remote">Remote file</option>
+                                <option value="wfs" selected>Web Feature Service (WFS)</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label input-sm col-sm-3">Format:</label>
 						<div class="col-sm-9">
-							<select name="format" class="form-control input-sm" required="required" onchange="if(this.value!='wfs'){$('#wfs_input').hide();$('#file_input').show()}else{$('#wfs_input').show();$('#file_input').hide()}">
-								<option value="wfs" selected="selected">WFS - Web Feature Service</option>
-								<option value="esrijson">EsriJSON</option>
-								<option value="geojson">GeoJSON</option>
-								<option value="topojson">TopoJSON</option>
-								<option value="gpx">GPX</option>
-								<option value="igc">IGC</option>
-								<option value="kml">KML</option>
-								<option value="mvt">MVT - Mapbox</option>
-								<option value="osm">OSM</option>
-								<option value="wkt">WKT - Well Known Text</option>
+							<select name="format" class="form-control input-sm" required>
+                                <optgroup label="XML formats">
+                                    <option value="gml3" selected>GML3 (default for WFS)</option>
+                                    <option value="gml2">GML2</option>
+                                    <option value="gpx">GPX</option>
+                                    <option value="kml">KML</option>
+                                    <option value="osmxml">OSMXML</option>
+                                </optgroup>
+                                <optgroup label="JSON formats">
+                                    <option value="esrijson">EsriJSON</option>
+                                    <option value="geojson">GeoJSON</option>
+                                    <option value="topojson">TopoJSON</option>
+                                </optgroup>
+                                <optgroup label="Text formats">
+                                    <option value="igc">IGC</option>
+                                    <option value="polyline">Polyline</option>
+                                    <option value="wkt">WKT</option>
+                                </optgroup>
+                                <optgroup label="MVT formats">
+                                    <option value="mvt">Mapbox</option>
+                                </optgroup>
 							</select>
 						</div>
 					</div>
-					<div id="wfs_input">
+					<div class="wfs_input">
 						<div class="form-group">
 							<label class="control-label input-sm col-sm-3">Server URL:</label>
 							<div class="col-sm-9">
-								<div class="input-group">
-									<input type="text" name="server" class="form-control input-sm" value="http://demo.mapserver.org/cgi-bin/wfs">
-									<span class="input-group-btn">
-										<button type="button" id="checkwmslayer" class="btn btn-sm btn-default">Check for layers</button>
-									</span>
-								</div>
-							</div>
+                                <div class="input-group">
+                                    <input type="text" name="server" class="form-control input-sm" value="http://demo.opengeo.org/geoserver/wfs">
+                                    <span class="input-group-btn">
+                                        <button type="button" name="check" class="btn btn-sm btn-default getCapabilities">Check for layers</button>
+                                    </span>
+                                </div>
+                            </div>
 						</div>
 						<div class="form-group">
 							<label class="control-label input-sm col-sm-3">Layer name:</label>
 							<div class="col-sm-9">
-								<input type="text" name="layer" class="form-control input-sm">
+								<select name="layer" class="form-control input-sm"></select>
 							</div>
 						</div>
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <div class="checkbox"><label><input type="checkbox" name="tiled"> Tiled</label></div>
+                            </div>
+                        </div>
 					</div>
-					<div id="file_input" style="display:none">
+					<div class="file_input" style="display:none">
 						<div class="form-group">
 							<label class="control-label input-sm col-sm-3">Vector file:</label>
 							<div class="col-sm-9">
@@ -187,12 +188,86 @@
 					<div class="form-group">
 						<label class="control-label input-sm col-sm-3">Projection:</label>
 						<div class="col-sm-9">
-							<input type="text" name="projection" class="form-control input-sm" value="EPSG:4326">
+							<select name="projection" class="form-control input-sm"></select>
+						</div>
+					</div>
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="submit" class="btn btn-sm btn-primary">Add layer</button>
+				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
+			  </div>
+			</form>
+			</div>
+		  </div>
+		</div>
+        
+		<div id="addraster" class="modal fade" role="dialog" tabindex="-1">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			<form id="addraster_form">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Add Raster layer</h4>
+			  </div>
+			  <div class="modal-body">
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label class="control-label input-sm col-sm-3">Display name:</label>
+						<div class="col-sm-9">
+							<input type="text" name="displayname" class="form-control input-sm" placeholder="Unnamed layer">
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-9 col-sm-offset-3">
-							<div class="checkbox"><label><input type="checkbox" name="tiled"> Tiled</label></div>
+						<label class="control-label input-sm col-sm-3">Source:</label>
+						<div class="col-sm-9">
+							<select name="format" class="form-control input-sm" required>
+                                <optgroup label="Tiled services">
+                                    <option value="wms" selected>Web Map Service (WMS)</option>
+                                    <option value="wmts">Web Map Tile Service (WMTS)</option>
+                                    <option value="bing">BingMaps</option>
+                                    <option value="mapquest">MapQuest</option>
+                                    <option value="stamen">Stamen</option>
+                                    <option value="osm">OpenStreetMap</option>
+                                    <option value="xyz">Tile with XYZ format</option>
+                                </optgroup>
+                                <optgroup label="Single images">
+                                    <option value="static">JPG, GeoJPEG, PNG, TIF, GeoTIF</option>
+                                </optgroup>
+							</select>
+						</div>
+					</div>
+					<div class="wms_input">
+                        <div class="form-group server_url">
+                            <label class="control-label input-sm col-sm-3">Server URL:</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <input type="text" name="server" class="form-control input-sm" value="http://demo.opengeo.org/geoserver/wms">
+                                    <span class="input-group-btn check_span">
+                                        <button type="button" name="check" class="btn btn-sm btn-default getCapabilities">Check for layers</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group layer_name">
+                            <label class="control-label input-sm col-sm-3">Layer name:</label>
+                            <div class="col-sm-9">
+                                <select name="layer" class="form-control input-sm"></select>
+                            </div>
+                        </div>
+                    </div>
+					<div class="file_input" style="display:none">
+						<div class="form-group">
+							<label class="control-label input-sm col-sm-3">Raster file:</label>
+							<div class="col-sm-9">
+								<input type="file" name="file" class="form-control input-sm">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label input-sm col-sm-3">Projection:</label>
+						<div class="col-sm-9">
+							<select name="projection" class="form-control input-sm"></select>
 						</div>
 					</div>
 				</div>
@@ -206,64 +281,15 @@
 		  </div>
 		</div>
 			
-		<div id="newvector" class="modal fade" role="dialog" tabindex="-1">
-		  <div class="modal-dialog">
-			<div class="modal-content">
-			<form id="newvector_form">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">New Vector layer</h4>
-			  </div>
-			  <div class="modal-body">
-				<div class="form-horizontal">
-					<div class="form-group">
-						<label class="control-label input-sm col-sm-3">Display name:</label>
-						<div class="col-sm-9">
-							<input type="text" name="displayname" class="form-control input-sm">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label input-sm col-sm-3">Type:</label>
-						<div class="col-sm-9">
-							<select name="type" required="required" class="form-control input-sm">
-								<option value="point">Point</option>
-								<option value="line">Line</option>
-								<option value="polygon">Polygon</option>
-								<option value="geomcollection">Geometry Collection</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label input-sm col-sm-3">Projection:</label>
-						<div class="col-sm-9">
-							<input type="text" name="projection" class="form-control input-sm" value="EPSG:4326">
-						</div>
-					</div>
-				</div>
-			  </div>
-			  <div class="modal-footer">
-				<button type="submit" class="btn btn-sm btn-primary">Add layer</button>
-				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
-			  </div>
-			</form>
-			</div>
-		  </div>
-		</div>
-		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<script src="toolbar.js"></script>
-        <!-- script type="text/javascript" src="ol3cesium/Cesium.js"></script -->
-        <!-- script type="text/javascript" src="ol3cesium/ol3cesium.js"></script -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol-debug.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.12/proj4.js"></script>
 		<script type="text/javascript" src="src/Editor.js"></script>
-		<!-- script type="text/javascript" src="src/cesium.js"></script -->
 		<script type="text/javascript" src="src/Geolocate.js"></script>
 		<script type="text/javascript" src="src/EditingControls.js"></script>
 		<script type="text/javascript" src="src/SelectionControls.js"></script>
 		<script type="text/javascript" src="src/Interaction.js"></script>
-		<!-- <script type="text/javascript" src="src/interaction.measure.js"></script> -->
 		<script type="text/javascript" src="src/LayerManager.js"></script>
 		<script type="text/javascript" src="src/LayerControls.js"></script>
 		<script type="text/javascript" src="src/Message.js"></script>
@@ -273,6 +299,7 @@
 		<script type="text/javascript" src="src/ShareMap.js"></script>
 		<script type="text/javascript" src="src/ZoomHistory.js"></script>
 		<script type="text/javascript" src="src/ZoomTo.js"></script>
+		<script src="toolbar.js"></script>
 		<script type="text/javascript">
 		
 //function init() {
@@ -288,7 +315,7 @@
     var editor = new ol.Editor({
         target: 'map',
         view: new ol.View({
-            projection: 'EPSG:3857',
+            //projection: 'EPSG:4326',
             extent: ol.proj.get('EPSG:3857').getExtent(),
             center: [0, 0],
             zoom: 2
@@ -297,27 +324,7 @@
             new ol.layer.Tile({
                 name: 'OpenStreetMap',
                 source: new ol.source.OSM()
-            }),
-            new ol.layer.Vector({
-                name: 'Countries',
-                source: new ol.source.Vector({
-                    url: 'countries.geojson',
-                    format: new ol.format.GeoJSON()
-                })
-            })/*,
-            new ol.layer.Tile({
-                name: 'Blue Marble',
-                source: new ol.source.TileWMS({
-                    url: 'http://demo.opengeo.org/geoserver/wms',
-                    params: { layers: 'bluemarble', format: 'image/png' }
-                })
-            }),
-            new ol.layer.Tile({
-                name: 'Grand Canyon',
-                source: new ol.source.XYZ({
-                    url: 'http://tileserver.maptiler.com/grandcanyon/{z}/{x}/{y}.png'
-                })
-            })*/
+            })
         ],
         controls: [
 			new ol.control.Rotate(),
@@ -370,14 +377,58 @@
         editor.getLayerManager().addRasterLayer(this);
 		$('#addraster').modal('hide');
     });
-    document.getElementById('checkwmslayer').addEventListener('click', function () {
-        editor.getLayerManager().checkWmsLayer(this.form);
+    document.getElementsByClassName('getCapabilities')[0].addEventListener('click', function (evt) {
+        editor.getLayerManager().getCapabilities(this.form);
     });
-    document.getElementById('wmsurl').addEventListener('change', function () {
-        editor.getLayerManager().removeContent(this.form.layer);
-        editor.getLayerManager().removeContent(this.form.format);
+    document.getElementsByClassName('getCapabilities')[1].addEventListener('click', function (evt) {
+        editor.getLayerManager().getCapabilities(this.form);
     });
-	
+    
+    var projList = ['EPSG:3857','EPSG:4326', 'EPSG:23700'];
+    projList.forEach(function(projCode){
+        var newOption = document.createElement('option');
+        newOption.value = projCode;
+        newOption.textContent = (!!proj4 && proj4.defs(projCode).title !== undefined) ? proj4.defs(projCode).title : projCode;
+        document.getElementById('newvector_form').projection.appendChild(newOption);
+        document.getElementById('addvector_form').projection.appendChild(newOption.cloneNode(true));
+        document.getElementById('addraster_form').projection.appendChild(newOption.cloneNode(true));
+    });
+    
+    document.getElementById('addvector_form').type.addEventListener('change', function(evt){
+        var form = $(this).closest('form');
+        if (this.value == 'file'){
+            form.find('.file_input').show();
+            form.find('.wfs_input').hide();
+        } else {
+            form.find('.file_input').hide();
+            form.find('.wfs_input').show();
+        }
+    });
+    
+    document.getElementById('addraster_form').format.addEventListener('change', function(evt){
+        editor.getLayerManager().getOtherCapabilities(this.form);
+        var form = $(this).closest('form');
+        if (this.value != 'wms' && this.value != 'wmts' && this.value != 'xyz'){
+            form.find('.server_url').hide();
+        } else {
+            form.find('.server_url').show();
+        }
+        if (this.value == 'xyz') {
+            form.find('.layer_name').hide();
+            form.find('.check_span').hide();
+        } else {
+            form.find('.layer_name').show();
+            form.find('.check_span').show();
+        }
+        if (this.value == 'static'){
+            form.find('.file_input').show();
+            form.find('.wms_input').hide();
+        } else {
+            form.find('.file_input').hide();
+            form.find('.wms_input').show();
+        }
+    });
+    
 //}
 //document.addEventListener('DOMContentLoaded', init);
 

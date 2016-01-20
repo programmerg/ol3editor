@@ -1,11 +1,4 @@
 /**
- * @name OL3ditor
- * @version 0.11
- * @description Desktop-like functionalities for the OpenLayers 3 web mapping library.
- * @author Gergő Gelencsér (http://github.com/programmerg)
- * @license Code licensed under the 2-Clause BSD (https://github.com/programmerg/ol3ditor/LICENSE.md)
- * @tutorial https://github.com/programmerg/ol3ditor/
- *
  * @classdesc
  * The Editor is the core component of OL3ditor.
  * This is very similar to the Map object, but has a few extra

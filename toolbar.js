@@ -51,7 +51,7 @@ $(document).ready(function () {
         $('#startscreen').removeClass('active');
     });
 
-    $('body [title]').tooltip({
+    $('#toolbar [title], #map [title], #statusbar [title]').tooltip({
         placement: 'auto bottom',
         container: 'body'
     });

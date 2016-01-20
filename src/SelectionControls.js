@@ -111,8 +111,8 @@ ol.control.SelectionControls.prototype.setMap = function(map) {
             features: this.get('selectedFeatures'),
             layers: function(layer) {
                 if (!layermanager) return true; // fallback: all in
-                if (layermanager.selectedLayer) {
-                    if (layer === layermanager.getLayerById(layermanager.selectedLayer.id)) {
+                if (layermanager.getSelectedLayer()) {
+                    if (layer === layermanager.getSelectedLayer()) {
                         return true;
                     }
                 }
@@ -124,8 +124,8 @@ ol.control.SelectionControls.prototype.setMap = function(map) {
             features: this.get('selectedFeatures'),
             layers: function(layer) {
                 if (!layermanager) return true; // fallback: all in
-                if (layermanager.selectedLayer) {
-                    if (layer === layermanager.getLayerById(layermanager.selectedLayer.id)) {
+                if (layermanager.getSelectedLayer()) {
+                    if (layer === layermanager.getSelectedLayer()) {
                         return true;
                     }
                 }
@@ -142,8 +142,8 @@ ol.control.SelectionControls.prototype.setMap = function(map) {
             var coords = geom.getCoordinates();
             var extent = geom.getExtent();
             if (!layermanager) return false; // fallback: nothing
-            if (layermanager.selectedLayer) {
-                var source = layermanager.getLayerById(layermanager.selectedLayer.id).getSource();
+            if (layermanager.getSelectedLayer()) {
+                var source = layermanager.getSelectedLayer().getSource();
                 if (source instanceof ol.source.Vector) {
                     if (coords[0][0][0] < coords[0][2][0]) {
                         source.forEachFeatureInExtent(extent, function (feature) {

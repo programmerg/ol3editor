@@ -51,8 +51,8 @@ ol.control.LayerControls = function(opt_options) {
     deleteLayerButton.addEventListener('click', function () {
         var map = _this.getMap();
         var layermanager = map.getLayerManager();
-		if (layermanager.selectedLayer) {
-			var layer = layermanager.getLayerById(layermanager.selectedLayer.id);
+		if (layermanager.getSelectedLayer()) {
+			var layer = layermanager.getSelectedLayer();
             if (confirm(options.removeConfirm || 'The selected layer will be removed. Are you sure?')) {
                 map.removeLayer(layer);
             }
@@ -94,8 +94,8 @@ ol.control.ZoomToLayer = function(opt_options) {
         extentFunction: function() {
             var map = _this.getMap();
             var layermanager = map.getLayerManager();
-            if (layermanager.selectedLayer !== null) {
-                var source = layermanager.getLayerById(layermanager.selectedLayer.id).getSource();
+            if (layermanager.getSelectedLayer()) {
+                var source = layermanager.getSelectedLayer().getSource();
                 if (typeof source.getExtent === 'function') {
                     return source.getExtent();
                 } else {
