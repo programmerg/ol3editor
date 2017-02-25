@@ -261,15 +261,15 @@ a.pin.active i {
 }
 
 .layermanager {
-	margin-left: calc(-20% + 1px);
+	margin-left: calc(-20% + 3px);
     width: 20%;
     height: 100%;
     position: absolute;
 	top: 0;
 	left:0;
     box-sizing: border-box;
-	border-right: 1px solid #bfbfbf;
-	background: rgba(230,230,230,0.8) url(res/logo.png) no-repeat left bottom;
+	border-right: 3px solid #bfbfbf;
+	background: rgba(230,230,230,0.8) url(../res/logo.png) no-repeat left bottom;
 	z-index: 998;
     color: #585858;
     transition: all 0.5s ease-in-out;
@@ -279,7 +279,7 @@ a.pin.active i {
     transition: all 0.5s ease-in-out;
 }
 .layermanager.pinned {
-	background: #e6e6e6 url(res/logo.png) no-repeat left bottom;
+	background: #e6e6e6 url(../res/logo.png) no-repeat left bottom;
     margin-left: 0;
     position: static;
     float: left;
@@ -287,7 +287,7 @@ a.pin.active i {
 .layermanager .ol-layercontainer {
     position: relative;
     height: 100%;
-    overflow-y: auto;
+    overflow: auto;
 	padding: 0.2em;
 }
 .ol-layercontainer .ol-layer {
@@ -359,14 +359,14 @@ a.pin.active i {
 
 
 .attributemanager {
-	margin-right: calc(-20% + 1px);
+	margin-right: calc(-20% + 3px);
     width: 20%;
     height: 100%;
     position: absolute;
 	top: 0;
 	right:0;
     box-sizing: border-box;
-	border-left: 1px solid #bfbfbf;
+	border-left: 3px solid #bfbfbf;
 	background: rgba(230,230,230,0.8);
 	z-index: 998;
     color: #585858;
@@ -381,6 +381,15 @@ a.pin.active i {
     margin-right: 0;
     position: static;
     float: right;
+}
+.attributemanager .ol-attributemanager {
+    position: relative;
+    height: 100%;
+    overflow: auto;
+	padding: 0.2em;
+}
+.attributemanager tr.selected td {
+    background: rgba(255,255,0,0.5);
 }
 
 
@@ -465,10 +474,31 @@ a.pin.active i {
 }
 .tooltip-inner {
     background: rgba(0,0,0,0.7) !important;
+    white-space: pre-wrap;
 }
 .tooltip-arrow {
     border-top-color: rgba(0,0,0,0.7) !important;
     border-bottom-color: rgba(0,0,0,0.7) !important;
+}
+.ol-tooltip {
+  font-size: 12px;
+  position: relative;
+  background: rgba(0,0,0,0.7);
+  border-radius: 4px;
+  color: white;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.ol-tooltip-arrow:before,
+.ol-tooltip-arrow:before {
+  border-top: 6px solid rgba(0,0,0,0.7);
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  margin-left: -7px;
+  left: 50%;
 }
 
 
@@ -514,79 +544,88 @@ a.pin.active i {
  */
 
 .toolbar button.ol-zoom-in  {
-    background-image: url(res/zoom-in.png);
+    background-image: url(../res/zoom-in.png);
 }
 .toolbar button.ol-zoom-out {
-    background-image: url(res/zoom-out.png);
+    background-image: url(../res/zoom-out.png);
 }
 .toolbar button.ol-navhist-back  {
-    background-image: url(res/zoom-last.png);
+    background-image: url(../res/zoom-last.png);
 }
 .toolbar button.ol-navhist-next  {
-    background-image: url(res/zoom-next.png);
+    background-image: url(../res/zoom-next.png);
 }
 .toolbar .ol-zoom-extent button {
-    background-image: url(res/zoom-extent.png);
+    background-image: url(../res/zoom-extent.png);
 }
 .toolbar .ol-print button {
-    background-image: url(res/print.png);
+    background-image: url(../res/print.png);
 }
 .toolbar .ol-share button {
-    background-image: url(res/share.png);
+    background-image: url(../res/share.png);
 }
 .toolbar .ol-geolocate button {
-    background-image: url(res/geolocate.png);
+    background-image: url(../res/geolocate.png);
 }
 
 .toolbar .ol-zoom-layer button {
-    background-image: url(res/zoom-layer.png);
+    background-image: url(../res/zoom-layer.png);
 }
 .toolbar .ol-layercontrols button.ol-addraster {
-    background-image: url(res/layer-raster-add.png);
+    background-image: url(../res/layer-raster-add.png);
 }
 .toolbar .ol-layercontrols button.ol-addvector {
-    background-image: url(res/layer-vector-add.png);
+    background-image: url(../res/layer-vector-add.png);
 }
 .toolbar .ol-layercontrols button.ol-newvector {
-    background-image: url(res/layer-vector-create.png);
+    background-image: url(../res/layer-vector-create.png);
 }
 .toolbar .ol-layercontrols button.ol-deletelayer {
-    background-image: url(res/layer-delete.png);
+    background-image: url(../res/layer-delete.png);
 }
 
 .toolbar .ol-zoom-selected button {
-    background-image: url(res/zoom-selection.png);
+    background-image: url(../res/zoom-selection.png);
 }
 .toolbar .ol-selectcontrols button.ol-singleselect {
-    background-image: url(res/select-one.png);
+    background-image: url(../res/select-one.png);
 }
 .toolbar .ol-selectcontrols button.ol-multiselect {
-    background-image: url(res/select-rectangle.png);
+    background-image: url(../res/select-rectangle.png);
 }
 .toolbar .ol-selectcontrols button.ol-deselect {
-    background-image: url(res/select-remove.png);
+    background-image: url(../res/select-remove.png);
 }
 
 .toolbar .ol-editingcontrols button.ol-addpoint {
-    background-image: url(res/point-create.png);
+    background-image: url(../res/point-create.png);
 }
 .toolbar .ol-editingcontrols button.ol-addline {
-    background-image: url(res/line-create.png);
+    background-image: url(../res/line-create.png);
 }
 .toolbar .ol-editingcontrols button.ol-addpolygon {
-    background-image: url(res/polygon-create.png);
+    background-image: url(../res/polygon-create.png);
 }
 
 .toolbar .ol-editingcontrols button.ol-dragfeature {
-    background-image: url(res/polygon-move.png);
+    background-image: url(../res/polygon-move.png);
 }
 .toolbar .ol-editingcontrols button.ol-modifyfeature {
-    background-image: url(res/vertex-tools.png);
+    background-image: url(../res/vertex-tools.png);
 }
 .toolbar .ol-editingcontrols button.ol-removefeature {
-    background-image: url(res/selected-delete.png);
+    background-image: url(../res/selected-delete.png);
 }
 
 .toolbar .ol-measure button {
-    background-image: url(res/measure.png);
+    background-image: url(../res/measure.png);
+}
+.toolbar .ol-measure button.ol-measure-area {
+    background-image: url(../res/area-measure.png);
+}
+.toolbar .ol-measure button.ol-measure-length {
+    background-image: url(../res/length-measure.png);
+}
+.toolbar .ol-measure button.ol-measure-angle {
+    background-image: url(../res/angle-measure.png);
 }

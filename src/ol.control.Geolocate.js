@@ -70,7 +70,7 @@ ol.control.Geolocate = function (opt_options) {
 			geolocation.setProjection( this.getMap().getView().getProjection() );
 			geolocation.setTracking(true);
 			geolocation.once('change', function () {
-                this.getMap().addLayer( this.get('featuresOverlay') );
+                this.get('featuresOverlay').setMap(this.getMap());
 				if (typeof this.get('accuracyFeature').getGeometry() !== 'undefined') {
 					this.getMap().getView().fit(this.get('accuracyFeature').getGeometry(), this.getMap().getSize(), {padding: [100, 100, 100, 100]});
 				} else if (typeof this.get('positionFeature').getGeometry() !== 'undefined') {
@@ -79,7 +79,7 @@ ol.control.Geolocate = function (opt_options) {
 			}, this);
         } else {
 			geolocateButton.classList.remove('active');
-			this.getMap().removeLayer( this.get('featuresOverlay') );
+			this.get('featuresOverlay').setMap(null);
 			geolocation.setTracking(false);
         }
     }, this);
