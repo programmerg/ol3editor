@@ -1,13 +1,4 @@
 /**
- * @name OL3ditor
- * @version 0.11
- * @description Desktop-like functionalities for the OpenLayers 3 web mapping library.
- * @author Gergő Gelencsér (http://github.com/programmerg)
- * @license Code licensed under the 2-Clause BSD (https://github.com/programmerg/ol3ditor/LICENSE.md)
- * @tutorial https://github.com/programmerg/ol3ditor/
- */
-
-/**
  * @classdesc
  * Button controls which, when pressed, handles specific selection methods.
  * To style this control use the css selector `.ol-selectcontrols`.

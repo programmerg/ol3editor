@@ -238,6 +238,7 @@ ol.control.LayerManager.prototype.createLayerDiv = function (layer) {
     layerStyleDiv.appendChild(opacityHandler);
     
     if (layer instanceof ol.layer.Vector) {
+        /*
         var attributeOptions = document.createElement('select');
         attributeOptions.addEventListener('click', function (evt) {
             evt.stopPropagation();
@@ -253,6 +254,7 @@ ol.control.LayerManager.prototype.createLayerDiv = function (layer) {
                 }
             }
         }, this);
+        layer.buildHeaders();
         
         var defaultStyle = document.createElement('button');
         defaultStyle.title = 'Default';
@@ -287,12 +289,8 @@ ol.control.LayerManager.prototype.createLayerDiv = function (layer) {
         layerStyleDiv.appendChild(categorizedStyle);
         
         layer.set('style', layer.getStyle());
-    }
-    layerDiv.appendChild(layerStyleDiv);
-    this.get('element').insertBefore(layerDiv, this.get('element').firstChild);
-    
-    if (layer instanceof ol.layer.Vector) {
-        layer.buildHeaders();
+        */
+  
         layer.getSource().on('change', function (evt) {
             switch (evt.target.getState()) {
                 case 'ready':   
@@ -307,6 +305,8 @@ ol.control.LayerManager.prototype.createLayerDiv = function (layer) {
             }
         });
     }
+    layerDiv.appendChild(layerStyleDiv);
+    this.get('element').insertBefore(layerDiv, this.get('element').firstChild);
     
     return this;
 };
@@ -332,7 +332,7 @@ ol.control.LayerManager.prototype.getSelectedLayer = function () {
     }
     return false;
 };
-
+/*
 ol.layer.Vector.prototype.buildHeaders = function () {
     var headers = this.get('headers') || {};
     var features = this.getSource().getFeatures();
@@ -424,7 +424,7 @@ ol.control.LayerManager.prototype.styleCategorized = function (layer, attribute)
         return [style];
     });
 };
-
+*/
 ol.control.LayerManager.prototype.newVectorLayer = function (form) {
     var type = form.type.value;
     if (type !== 'point' && type !== 'line' && type !== 'polygon' && type !== 'geomcollection') {

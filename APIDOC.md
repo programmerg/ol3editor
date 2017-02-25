@@ -1,5 +1,5 @@
-# [![OL3ditor](res/logo.png "OL3ditor")](http://github.com/programmerg/ol3ditor)
-_Desktop-like functionalities for the OpenLayers 3 web mapping library._
+# [![OLEditor](res/logo.png "OLEditor")](http://github.com/programmerg/ol3editor)
+_Desktop-like UI for the OpenLayers 3+ web mapping library._
 
 ## API documentation
 
