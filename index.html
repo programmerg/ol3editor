@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-        <meta charset="utf-8">
-        <title>OL3ditor</title>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol.min.css" rel="stylesheet">
-        <link href="ol3ditor.css" rel="stylesheet">
-        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body>
+  <head>
+    <meta charset="utf-8">
+    <title>OLEditor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol.min.css">
+    <link rel="stylesheet" href="dist/ol.editor.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
         
-        <div id="startscreen" class="startscreen active">
-            <div class="container">
-                <h1><img src="res/logo.png" alt="OL3ditor" title="OL3ditor" style="margin-left:-10px"> <small>v0.11</small></h1>
-                <p><em>Desktop-like functionalities for the OpenLayers 3 web mapping library.</em></p>
-                <p>Author: Gelencsér Gergő <small>(<a href="http://github.com/programmerg/" target="_blank">github.com/programmerg</a>)</small><br>
-                Code licensed under the 2-Clause BSD.<br>
-                Follow the project at: <a href="http://github.com/programmerg/ol3ditor/" target="_blank">github.com/programmerg/ol3ditor</a></p>
-                <p style="color:#c2c2c2">— or —</p>
-                <p><a href="#back">Take a try!</a><noscript> <mark class="text-danger">Warning! This site require javascript. Please, enable it!</mark></noscript></p>
-                
-            </div>
-        </div>
-	
-        <div class="application pinned-toolbar pinned-layermanager">
+    <div id="startscreen" class="startscreen active">
+      <div class="container">
+        <h1><img src="res/logo.png" alt="OLEditor" title="OLEditor" style="margin-left:-10px"> <small>v0.12</small></h1>
+        <p><em>Desktop-like UI for the OpenLayers 3+ web mapping library.</em></p>
+        <p>Author: Gelencsér Gergő <small>(<a href="http://github.com/programmerg/" target="_blank">github.com/programmerg</a>)</small><br>
+        Code licensed under the 2-Clause BSD.<br>
+        Follow the project at: <a href="http://github.com/programmerg/ol3editor/" target="_blank">github.com/programmerg/ol3editor</a></p>
+        <p style="color:#c2c2c2">— or —</p>
+        <p><a href="#back">Take a try!</a><noscript> <mark class="text-danger">Warning! This site require javascript. Please, enable it!</mark></noscript></p>
+      </div>
+    </div>
+
+    <div class="application pinned-toolbar pinned-layermanager">
 			<div id="menubar" class="menubar">
-                <a href="#toolbar" class="pin active" title="Pin/unpin menubar"><i class="glyphicon glyphicon-pushpin"></i></a>
+        <a href="#toolbar" class="pin active" title="Pin/unpin menubar"><i class="glyphicon glyphicon-pushpin"></i></a>
 				<ul>
-					<li class="branding"><a href="#startscreen">OL3ditor</a></li>
+					<li class="branding"><a href="#startscreen">OLEditor</a></li>
 					<li class="active"><a href="#maptools" role="tab" data-toggle="tab">Map</a></li>
 					<li><a href="#layertools" role="tab" data-toggle="tab">Layer</a></li>
 					<li><a href="#featuretools" role="tab" data-toggle="tab">Feature</a></li>
@@ -46,15 +45,15 @@
 			</div>
 			<div class="map-container">
 				<div id="layermanager" class="layermanager pinned">
-                    <div class="bar-title"><a href="#layermanager" class="pin active" title="Pin/unpin layer manager"><i class="glyphicon glyphicon-pushpin"></i></a> Layer manager</div>
-                </div>
+            <div class="bar-title"><a href="#layermanager" class="pin active" title="Pin/unpin layer manager"><i class="glyphicon glyphicon-pushpin"></i></a> Layer manager</div>
+        </div>
 				<div id="attributemanager" class="attributemanager">
-                    <div class="bar-title"><a href="#attributemanager" class="pin" title="Pin/unpin attribute manager"><i class="glyphicon glyphicon-pushpin"></i></a> Attribute manager</div>
-                </div>
+            <div class="bar-title"><a href="#attributemanager" class="pin" title="Pin/unpin attribute manager"><i class="glyphicon glyphicon-pushpin"></i></a> Attribute manager</div>
+        </div>
 				<div id="map" class="map" tabindex="-1" style="cursor:default"></div>
 			</div>
-            <div id="statusbar" class="statusbar"></div>
-        </div>
+      <div id="statusbar" class="statusbar"></div>
+    </div>
     
 		<div id="newvector" class="modal fade" role="dialog" tabindex="-1">
 		  <div class="modal-dialog">
@@ -120,9 +119,9 @@
 						<label class="control-label input-sm col-sm-3">Source:</label>
 						<div class="col-sm-9">
 							<select name="type" class="form-control input-sm" required>
-                                <option value="file">Local file</option>
-                                <option value="remote">Remote file</option>
-                                <option value="wfs" selected>Web Feature Service (WFS)</option>
+                <option value="file">Local file</option>
+                <option value="remote">Remote file</option>
+                <option value="wfs" selected>Web Feature Service (WFS)</option>
 							</select>
 						</div>
 					</div>
@@ -130,26 +129,26 @@
 						<label class="control-label input-sm col-sm-3">Format:</label>
 						<div class="col-sm-9">
 							<select name="format" class="form-control input-sm" required>
-                                <optgroup label="XML formats">
-                                    <option value="gml3" selected>GML3 (default for WFS)</option>
-                                    <option value="gml2">GML2</option>
-                                    <option value="gpx">GPX</option>
-                                    <option value="kml">KML</option>
-                                    <option value="osmxml">OSMXML</option>
-                                </optgroup>
-                                <optgroup label="JSON formats">
-                                    <option value="esrijson">EsriJSON</option>
-                                    <option value="geojson">GeoJSON</option>
-                                    <option value="topojson">TopoJSON</option>
-                                </optgroup>
-                                <optgroup label="Text formats">
-                                    <option value="igc">IGC</option>
-                                    <option value="polyline">Polyline</option>
-                                    <option value="wkt">WKT</option>
-                                </optgroup>
-                                <optgroup label="MVT formats">
-                                    <option value="mvt">Mapbox</option>
-                                </optgroup>
+                <optgroup label="XML formats">
+                    <option value="gml3" selected>GML3 (default for WFS)</option>
+                    <option value="gml2">GML2</option>
+                    <option value="gpx">GPX</option>
+                    <option value="kml">KML</option>
+                    <option value="osmxml">OSMXML</option>
+                </optgroup>
+                <optgroup label="JSON formats">
+                    <option value="esrijson">EsriJSON</option>
+                    <option value="geojson">GeoJSON</option>
+                    <option value="topojson">TopoJSON</option>
+                </optgroup>
+                <optgroup label="Text formats">
+                    <option value="igc">IGC</option>
+                    <option value="polyline">Polyline</option>
+                    <option value="wkt">WKT</option>
+                </optgroup>
+                <optgroup label="MVT formats">
+                    <option value="mvt">Mapbox</option>
+                </optgroup>
 							</select>
 						</div>
 					</div>
@@ -157,13 +156,13 @@
 						<div class="form-group">
 							<label class="control-label input-sm col-sm-3">Server URL:</label>
 							<div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="text" name="server" class="form-control input-sm" value="http://demo.opengeo.org/geoserver/wfs">
-                                    <span class="input-group-btn">
-                                        <button type="button" name="check" class="btn btn-sm btn-default getCapabilities">Check for layers</button>
-                                    </span>
-                                </div>
-                            </div>
+                  <div class="input-group">
+                      <input type="text" name="server" class="form-control input-sm" value="http://demo.opengeo.org/geoserver/wfs">
+                      <span class="input-group-btn">
+                          <button type="button" name="check" class="btn btn-sm btn-default getCapabilities">Check for layers</button>
+                      </span>
+                  </div>
+              </div>
 						</div>
 						<div class="form-group">
 							<label class="control-label input-sm col-sm-3">Layer name:</label>
@@ -171,11 +170,11 @@
 								<select name="layer" class="form-control input-sm"></select>
 							</div>
 						</div>
-                        <div class="form-group">
-                            <div class="col-sm-9 col-sm-offset-3">
-                                <div class="checkbox"><label><input type="checkbox" name="tiled"> Tiled</label></div>
-                            </div>
-                        </div>
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <div class="checkbox"><label><input type="checkbox" name="tiled"> Tiled</label></div>
+                </div>
+            </div>
 					</div>
 					<div class="file_input" style="display:none">
 						<div class="form-group">
@@ -222,40 +221,40 @@
 						<label class="control-label input-sm col-sm-3">Source:</label>
 						<div class="col-sm-9">
 							<select name="format" class="form-control input-sm" required>
-                                <optgroup label="Tiled services">
-                                    <option value="wms" selected>Web Map Service (WMS)</option>
-                                    <option value="wmts">Web Map Tile Service (WMTS)</option>
-                                    <option value="bing">BingMaps</option>
-                                    <option value="mapquest">MapQuest</option>
-                                    <option value="stamen">Stamen</option>
-                                    <option value="osm">OpenStreetMap</option>
-                                    <option value="xyz">Tile with XYZ format</option>
-                                </optgroup>
-                                <optgroup label="Single images">
-                                    <option value="static">JPG, GeoJPEG, PNG, TIF, GeoTIF</option>
-                                </optgroup>
+                <optgroup label="Tiled services">
+                    <option value="wms" selected>Web Map Service (WMS)</option>
+                    <option value="wmts">Web Map Tile Service (WMTS)</option>
+                    <option value="bing">BingMaps</option>
+                    <option value="mapquest">MapQuest</option>
+                    <option value="stamen">Stamen</option>
+                    <option value="osm">OpenStreetMap</option>
+                    <option value="xyz">Tile with XYZ format</option>
+                </optgroup>
+                <optgroup label="Single images">
+                    <option value="static">JPG, GeoJPEG, PNG, TIF, GeoTIF</option>
+                </optgroup>
 							</select>
 						</div>
 					</div>
 					<div class="wms_input">
-                        <div class="form-group server_url">
-                            <label class="control-label input-sm col-sm-3">Server URL:</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="text" name="server" class="form-control input-sm" value="http://demo.opengeo.org/geoserver/wms">
-                                    <span class="input-group-btn check_span">
-                                        <button type="button" name="check" class="btn btn-sm btn-default getCapabilities">Check for layers</button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group layer_name">
-                            <label class="control-label input-sm col-sm-3">Layer name:</label>
-                            <div class="col-sm-9">
-                                <select name="layer" class="form-control input-sm"></select>
-                            </div>
-                        </div>
-                    </div>
+              <div class="form-group server_url">
+                  <label class="control-label input-sm col-sm-3">Server URL:</label>
+                  <div class="col-sm-9">
+                      <div class="input-group">
+                          <input type="text" name="server" class="form-control input-sm" value="http://demo.opengeo.org/geoserver/wms">
+                          <span class="input-group-btn check_span">
+                              <button type="button" name="check" class="btn btn-sm btn-default getCapabilities">Check for layers</button>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group layer_name">
+                  <label class="control-label input-sm col-sm-3">Layer name:</label>
+                  <div class="col-sm-9">
+                      <select name="layer" class="form-control input-sm"></select>
+                  </div>
+              </div>
+          </div>
 					<div class="file_input" style="display:none">
 						<div class="form-group">
 							<label class="control-label input-sm col-sm-3">Raster file:</label>
@@ -283,14 +282,10 @@
 			
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol-debug.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.12/proj4.js"></script>
-		<script src="ol3ditor.js"></script>
-		<script src="toolbar.js"></script>
-		<script type="text/javascript">
-		
-function init() {
-    document.removeEventListener('DOMContentLoaded', init);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.12/proj4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.12.1/ol-debug.js"></script>
+		<script src="dist/ol.editor.js"></script>
+		<script>
 
     proj4.defs("EPSG:23700","+title=HD72 EOV +proj=somerc +lat_0=47.14439372222222 +lon_0=19.04857177777778 +k_0=0.99993 +x_0=650000 +y_0=200000 +ellps=GRS67 +towgs84=52.17,-71.82,-14.9,0,0,0,0 +units=m +no_defs");
     var eov = new ol.proj.Projection({
@@ -314,22 +309,24 @@ function init() {
             })
         ],
         controls: [
-			new ol.control.Rotate(),
-			new ol.control.ScaleLine(),
-			new ol.control.ZoomSlider(),
-			new ol.control.Attribution({ collapsible: false }),
+            new ol.control.Rotate(),
+            new ol.control.ScaleLine(),
+            new ol.control.ZoomSlider(),
+            new ol.control.Attribution({ collapsible: false }),
             new ol.control.LayerManager({ target: 'layermanager' }),
-			new ol.control.Zoom({ target: 'maptools', zoomInLabel: ' ', zoomOutLabel: ' ' }),
-			new ol.control.ZoomHistory({ target: 'maptools' }), 
-			new ol.control.ZoomToExtent({ target: 'maptools', label: ' ' }),
-			new ol.control.Print({ target: 'maptools' }),
-			new ol.control.ShareMap({ target: 'maptools', autoUpdate: false }),
-			new ol.control.Geolocate({ target: 'maptools' }),
+            new ol.control.AttributeManager({ target: 'attributemanager' }),
+            new ol.control.Zoom({ target: 'maptools', zoomInLabel: ' ', zoomOutLabel: ' ' }),
+            new ol.control.ZoomHistory({ target: 'maptools' }), 
+            new ol.control.ZoomToExtent({ target: 'maptools', label: ' ' }),
+            new ol.control.Print({ target: 'maptools' }),
+            new ol.control.ShareMap({ target: 'maptools', autoUpdate: false }),
+            new ol.control.Geolocate({ target: 'maptools' }),
             new ol.control.ZoomToLayer({ target: 'layertools' }),
             new ol.control.LayerControls({ target: 'layertools' }),
             new ol.control.ZoomToSelection({ target: 'featuretools' }),
             new ol.control.SelectionControls({ target: 'featuretools' }),
             new ol.control.EditingControls({ target: 'featuretools' }),
+            new ol.control.Measure({ target: 'analysistools' }),
             new ol.control.Message({ target: 'statusbar' }),
             new ol.control.MousePosition({
                 target: 'statusbar',
@@ -337,10 +334,10 @@ function init() {
                 coordinateFormat: ol.coordinate.createStringXY(3)
             }),
             new ol.control.Rotation({ target: 'statusbar' }),
-			new ol.control.Projection({
+            new ol.control.Projection({
                 target: 'statusbar',
                 projections: ['EPSG:3857','EPSG:4326', eov]
-			})
+            })
         ],
         loadTilesWhileAnimating: true,
         loadTilesWhileInteracting: true,
@@ -415,9 +412,65 @@ function init() {
         }
     });
     
-}
-document.addEventListener('DOMContentLoaded', init);
+        
+    var showing = false;
+    $(document).ready(function () {
+        
+        $(document).on('click', '#menubar>ul>li>a', function(e) {
+            var elementToShow = $(this).attr('href');
+            if (!showing) {
+                showing = true;
+                setTimeout(function() {
+                    $(elementToShow).addClass('slide-out');
+                }, 100);
+            } else {
+                if (!$(elementToShow).hasClass('showing')) {
+                    $(elementToShow).addClass('showing');
+                }
+                if ($(elementToShow).hasClass('slide-out')) {
+                    $(elementToShow).removeClass('slide-out');
+                }
+            }
+            $(elementToShow).addClass('active');
+        });
 
+        $(document).click(function(e) {
+            var tabs = $('#menubar>ul>li>a');
+            var containers = $('#toolbar:not(.pinned)>div');
+            if ((!containers.is(e.target) && containers.has(e.target).length === 0)
+                && (!tabs.is(e.target) && tabs.has(e.target).length === 0)
+            ) {
+                containers.removeClass('slide-out');
+                containers.removeClass('showing');
+                containers.removeClass('active');
+                $('.application:not(.pinned-toolbar) #menubar>ul>li').removeClass('active');
+                showing = false;
+            }
+        });
+
+        $(document).on('click', 'a.pin', function(e) {
+            e.preventDefault();
+            $(this).toggleClass('active');
+            var target = $(this).attr('href');
+            $(target).toggleClass('pinned');
+            if (target == '#toolbar') { // activate the first
+                $('#menubar>ul>li>a[data-toggle=tab]').first().trigger('click');
+            }
+            $($(this).closest('.application')).toggleClass('pinned-' + $(this).attr('href').substr(1));
+            editor.updateSize(); // soo static
+        });
+
+        $('#startscreen a[href=#back]').on('click', function(e){
+            e.preventDefault();
+            $('#startscreen').removeClass('active');
+        });
+
+        $('#toolbar [title], #map [title], #statusbar [title]').tooltip({
+            placement: 'auto bottom',
+            container: 'body'
+        });
+        
+    });
 		</script>
 	</body>
 </html>
