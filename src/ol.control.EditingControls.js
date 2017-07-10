@@ -39,6 +39,7 @@ ol.control.EditingControls = function(opt_options) {
                 if (layer instanceof ol.layer.Vector) {
 		    features.forEach(function (f) {
                         layer.getSource().removeFeature(f);
+			_this.getMap().selectedFeatures.remove(f);
 		    });
                 }
             });
