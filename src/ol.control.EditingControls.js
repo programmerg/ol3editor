@@ -33,11 +33,13 @@ ol.control.EditingControls = function(opt_options) {
     removeFeature.title = options.removeTipLabel || 'Remove feature(s)';
     removeFeature.textContent = options.removeLabel || '';
     removeFeature.addEventListener('click', function() {
-        var features = _this.get('selectedFeatures');
+        var features = _this.selectedFeatures_;
         if (confirm(options.removeConfirm || 'The selected feature(s) will be removed. Are you sure?')) {
             _this.getMap().getLayers().forEach(function(layer){
                 if (layer instanceof ol.layer.Vector) {
-                    layer.getSource().removeFeature(features);
+		    features.forEach(function (f) {
+                        layer.getSource().removeFeature(f);
+		    });
                 }
             });
         }
